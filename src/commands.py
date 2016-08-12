@@ -35,6 +35,7 @@ obey_dict = {
         'Rien': 'I obey, kiddo.',
         'K-Ni-Fe': 'I obey, because I\'m 40% Potassium, Nickel and Iron.',
         'BigLupu': 'Rim my necrotic yawghole, Lupu.'
+        'PGleo86': 'shh bby is ok'
 }
 
 # ---------------------------
@@ -68,7 +69,7 @@ def cmd_fetch(message):
         # If an exact card is found, just print that one
         # When you find the exact match, break out of the for card in cards loop
         # Then "continue" the for s in queries to move to the next query
-        # If you find an exact match and there is only 1 query in the buffer, 
+        # If you find an exact match and there is only 1 query in the buffer,
         # Get the details and rulings of the exact card, as they are skipped when mtg cli returns multiple
         done = False
         for card in card_list:
@@ -177,7 +178,7 @@ def cmd_obey(message):
 # Command: Moon
 # ---------------------------
 def cmd_moon(message):
-    try: 
+    try:
         phase = "Cannot be divined."
         now = datetime.now().strftime('%m/%d/%Y')
         url = "http://api.usno.navy.mil/rstt/oneday?date=" + now + "&loc=Boston,%20MA"
@@ -186,13 +187,13 @@ def cmd_moon(message):
 
         if(response.ok):
             moonData = json.loads(response.content)
-            
+
             if "curphase" in moonData:
                 rawPhase = moonData["curphase"]
             elif "closestphase" in moonData and "phase" in moonData["closestphase"]:
                 rawPhase = moonData["closestphase"]["phase"]
 
-            if rawPhase == "Full Moon": 
+            if rawPhase == "Full Moon":
                 phase = ":full_moon:"
             elif rawPhase == "Waning Gibbous":
                 phase = ":waning_gibbous_moon:"
@@ -238,8 +239,3 @@ def cmd_reset(message):
         sys.exit(2)
     else:
         return ''
-
-
-
-
-
